@@ -99,15 +99,12 @@ lib/reporting/templates/standard/index.html.erb
 ## Features
 
 * Remove rcov by default
-* Either allow user to define a command to run a coverage task or supply a directory with coverage results.   We can't predict every test setup to run coverage correctly, but we can analyze results.
-* Look into getting everything to run on RubyParser ~> 3
+* Either allow user to define or register a command to run a coverage task or supply a directory with coverage results.   We can't predict every test setup to run coverage correctly, but we can analyze results.
 * Look into adding
   * https://github.com/metricfu/code_statistics
   * brakeman https://github.com/metricfu/brakeman
-  * cane https://github.com/square/cane
   * laser https://github.com/metricfu/laser
 * Add configurable logger to all output streams
-* Allow command-line metric_fu to accept parameters, and especially output its version
 * Color code flog results with scale from: http://jakescruggs.blogspot.com/2008/08/whats-good-flog-score.html
 * Make running metric_fu on metric_fu less embarrassing
 * Load all gems at config time so you fail fast if one is missing
@@ -135,6 +132,8 @@ lib/reporting/templates/standard/index.html.erb
 
 ## Misc
 
+* http://saikuro.rubyforge.org/ http://selfless-singleton.rickwinfrey.com/2012/11/28/simplecov-flay-flog-and-saikuro/  http://www.zenspider.com/ZSS/Products/ParseTree/ https://github.com/japgolly/Saikuro/blob/master/lib/saikuro.rb
+* http://pmd.sourceforge.net/ PMD is a source code analyzer. It finds unused variables, empty catch blocks, unnecessary object creation, and so forth. https://github.com/pmd/pmd
 * Determine if CodeIssue is used, else remove it
 * Remove references to Ruport from the Devver / Caliper code
 * Update or move the homepage http://metric-fu.rubyforge.org/

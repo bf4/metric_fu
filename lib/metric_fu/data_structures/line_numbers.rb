@@ -17,9 +17,9 @@ module MetricFu
         when :block
           file_sexp.each_of_type(:class) { |sexp| process_class(sexp) }
         when :iter
-          mf_debug "SEXP: Not parsing line number for #{file_sexp.inspect}"
+          mf_debug "SEXP: Not parsing line number for \n\t#{file_sexp.inspect}\n\t#{contents.inspect}"
         when :cdecl
-          mf_debug "SEXP: Not parsing line number for #{file_sexp.inspect}"
+          mf_debug "SEXP: Not parsing line number for \n\t#{file_sexp.inspect}\n\t#{contents.inspect}"
         else
           puts "Unexpected sexp_type #{file_sexp[0].inspect}"
         end
