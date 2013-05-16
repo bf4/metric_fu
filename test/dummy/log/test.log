@@ -1,0 +1,107 @@
+Started GET "/assets/yui.js" for 127.0.0.1 at 2013-02-22 16:38:22 -0600
+Connecting to database specified by database.yml
+Compiled yui.js  (2ms)  (pid 20161)
+Served asset /yui.js - 200 OK (36ms)
+Started GET "/assets/yui.js" for 127.0.0.1 at 2013-02-22 16:39:22 -0600
+Connecting to database specified by database.yml
+Served asset /yui.js - 200 OK (3ms)
+Started GET "/assets/yui.js" for 127.0.0.1 at 2013-02-22 16:41:00 -0600
+Connecting to database specified by database.yml
+Served asset /yui.js - 200 OK (3ms)
+Started GET "/assets/yui.js" for 127.0.0.1 at 2013-02-22 16:42:04 -0600
+Connecting to database specified by database.yml
+Served asset /yui.js - 200 OK (3ms)
+Started GET "/assets/yui.js" for 127.0.0.1 at 2013-02-22 16:48:13 -0600
+Connecting to database specified by database.yml
+Served asset /yui.js - 200 OK (3ms)
+Started GET "/assets/yui-min.js" for 127.0.0.1 at 2013-02-22 16:50:29 -0600
+Connecting to database specified by database.yml
+Compiled yui-min.js  (0ms)  (pid 20904)
+Served asset /yui-min.js - 200 OK (13ms)
+Started GET "/assets/yui.js" for 127.0.0.1 at 2013-02-22 16:50:30 -0600
+Served asset /yui.js - 200 OK (3ms)
+Started GET "/assets/yui.js" for 127.0.0.1 at 2013-02-22 16:52:32 -0600
+Connecting to database specified by database.yml
+Served asset /yui.js - 200 OK (3ms)
+Started GET "/assets/yui-min.js" for 127.0.0.1 at 2013-02-22 16:52:32 -0600
+Served asset /yui-min.js - 200 OK (1ms)
+Started GET "/assets/yui.js" for 127.0.0.1 at 2013-02-22 16:53:44 -0600
+Connecting to database specified by database.yml
+Served asset /yui.js - 200 OK (3ms)
+Started GET "/assets/yui-min.js" for 127.0.0.1 at 2013-02-22 16:53:44 -0600
+Served asset /yui-min.js - 200 OK (1ms)
+Started GET "/assets/yui.js" for 127.0.0.1 at 2013-02-25 14:25:54 -0600
+Connecting to database specified by database.yml
+Served asset /yui.js - 200 OK (17ms)
+Started GET "/assets/yui-min.js" for 127.0.0.1 at 2013-02-25 14:25:54 -0600
+Served asset /yui-min.js - 200 OK (6ms)
+Started GET "/assets/yui.js" for 127.0.0.1 at 2013-02-25 14:37:27 -0600
+Connecting to database specified by database.yml
+Served asset /yui.js - 200 OK (20ms)
+Started GET "/assets/yui-min.js" for 127.0.0.1 at 2013-02-25 14:37:27 -0600
+Served asset /yui-min.js - 200 OK (4ms)
+Started GET "/assets/yui-min.js" for 127.0.0.1 at 2013-02-25 15:01:31 -0600
+Connecting to database specified by database.yml
+Served asset /yui-min.js - 200 OK (8ms)
+Started GET "/assets/yui.js" for 127.0.0.1 at 2013-02-25 15:01:31 -0600
+Served asset /yui.js - 200 OK (15ms)
+Started GET "/assets/yui.js" for 127.0.0.1 at 2013-02-26 09:01:35 -0600
+Connecting to database specified by database.yml
+Served asset /yui.js - 200 OK (17ms)
+Started GET "/assets/yui-min.js" for 127.0.0.1 at 2013-02-26 09:01:36 -0600
+Served asset /yui-min.js - 200 OK (7ms)
+Started GET "/assets/yui.js" for 127.0.0.1 at 2013-02-26 09:02:11 -0600
+Connecting to database specified by database.yml
+Served asset /yui.js - 200 OK (16ms)
+Started GET "/assets/yui-min.js" for 127.0.0.1 at 2013-02-26 09:02:12 -0600
+Served asset /yui-min.js - 200 OK (6ms)
+Started GET "/assets/yui.js" for 127.0.0.1 at 2013-02-26 09:03:10 -0600
+Connecting to database specified by database.yml
+Served asset /yui.js - 200 OK (16ms)
+Started GET "/assets/yui-min.js" for 127.0.0.1 at 2013-02-26 09:03:10 -0600
+Served asset /yui-min.js - 200 OK (4ms)
+Started GET "/assets/yui.js" for 127.0.0.1 at 2013-02-26 09:26:54 -0600
+Connecting to database specified by database.yml
+Served asset /yui.js - 200 OK (17ms)
+Started GET "/assets/yui-min.js" for 127.0.0.1 at 2013-02-26 09:26:54 -0600
+Served asset /yui-min.js - 200 OK (5ms)
+Started GET "/assets/yui.js" for 127.0.0.1 at 2013-02-26 09:28:08 -0600
+Connecting to database specified by database.yml
+Served asset /yui.js - 200 OK (3ms)
+Started GET "/assets/yui-min.js" for 127.0.0.1 at 2013-02-26 09:28:08 -0600
+Served asset /yui-min.js - 200 OK (1ms)
+Started GET "/assets/yui.js" for 127.0.0.1 at 2013-02-26 09:32:59 -0600
+Connecting to database specified by database.yml
+Served asset /yui.js - 200 OK (3ms)
+Started GET "/assets/yui-min.js" for 127.0.0.1 at 2013-02-26 09:32:59 -0600
+Served asset /yui-min.js - 200 OK (1ms)
+Started GET "/assets/yui.js" for 127.0.0.1 at 2013-02-26 09:46:33 -0600
+Connecting to database specified by database.yml
+Served asset /yui.js - 200 OK (12ms)
+Started GET "/assets/yui-min.js" for 127.0.0.1 at 2013-02-26 09:46:33 -0600
+Served asset /yui-min.js - 200 OK (4ms)
+Started GET "/assets/yui.js" for 127.0.0.1 at 2013-02-26 09:55:57 -0600
+Connecting to database specified by database.yml
+Served asset /yui.js - 200 OK (4ms)
+Started GET "/assets/yui-min.js" for 127.0.0.1 at 2013-02-26 09:55:58 -0600
+Served asset /yui-min.js - 200 OK (1ms)
+Started GET "/assets/yui.js" for 127.0.0.1 at 2013-02-26 10:06:06 -0600
+Connecting to database specified by database.yml
+Served asset /yui.js - 200 OK (3ms)
+Started GET "/assets/yui-min.js" for 127.0.0.1 at 2013-02-26 10:06:07 -0600
+Served asset /yui-min.js - 200 OK (1ms)
+Started GET "/assets/yui.js" for 127.0.0.1 at 2013-02-26 10:10:37 -0600
+Connecting to database specified by database.yml
+Served asset /yui.js - 200 OK (3ms)
+Started GET "/assets/yui-min.js" for 127.0.0.1 at 2013-02-26 10:10:37 -0600
+Served asset /yui-min.js - 200 OK (1ms)
+Started GET "/assets/yui.js" for 127.0.0.1 at 2013-02-28 13:16:23 -0600
+Connecting to database specified by database.yml
+Served asset /yui.js - 200 OK (17ms)
+Started GET "/assets/yui-min.js" for 127.0.0.1 at 2013-02-28 13:16:24 -0600
+Served asset /yui-min.js - 200 OK (4ms)
+Started GET "/assets/yui.js" for 127.0.0.1 at 2013-02-28 13:30:25 -0600
+Connecting to database specified by database.yml
+Served asset /yui.js - 200 OK (16ms)
+Started GET "/assets/yui-min.js" for 127.0.0.1 at 2013-02-28 13:30:25 -0600
+Served asset /yui-min.js - 200 OK (5ms)
