@@ -32,7 +32,7 @@ module MetricFu
   # The Configuration class checks for the presence of a
   # 'CC_BUILD_ARTIFACTS' environment variable.  If it's found
   # it will change the default output directory from the default
-  # "tmp/metric_fu to the directory represented by 'CC_BUILD_ARTIFACTS'
+  # to the directory represented by 'CC_BUILD_ARTIFACTS'
   #
   # == Metric Configuration
   #

@@ -38,7 +38,10 @@ module MetricFu
   # path is relative to where the task is being run,
   # not to the metric_fu library
   def self.artifact_dir
-    (ENV['CC_BUILD_ARTIFACTS'] || 'tmp/metric_fu')
+    (ENV['CC_BUILD_ARTIFACTS'] || '_metric_fu_data')
+  end
+  def self.legacy_artifact_dir
+    'tmp/metric_fu'
   end
   def self.configure
     MetricFu.lib_require { 'core_ext' }
