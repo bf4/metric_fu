@@ -7,9 +7,21 @@ module MetricFu
       files_to_reek = MetricFu.reek[:dirs_to_reek].map{|dir| Dir[File.join(dir, "**/*.rb")] }
       files = remove_excluded_files(files_to_reek.flatten)
       config_file_param = MetricFu.reek[:config_file_pattern] ? "--config #{MetricFu.reek[:config_file_pattern]}" : ''
-      command = %Q(mf-reek #{config_file_param} #{files.join(" ")})
+      options_string = %Q(#{config_file_param} #{files.join(" ")})
+      command = %Q(mf-reek #{options_string})
       mf_debug "** #{command}"
-      @output = `#{command}`
+      original_argv = ARGV.dup
+      require 'shellwords'
+      ARGV.clear; ARGV.concat Shellwords.shellwords(options_string)
+
+      require 'rubygems'
+      require 'metric_fu_requires'
+      version = MetricFu::MetricVersion.reek
+      gem 'reek', version
+      gem_name = 'reek'
+      library_name = 'reek'
+      @output = MfDebugger::Logger.capture_output { load Gem.bin_path(gem_name, library_name, version) }
+      # @output = `#{command}`
       @output = massage_for_reek_12 if reek_12?
     end
 

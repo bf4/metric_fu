@@ -1,9 +1,21 @@
 module MetricFu
   class RailsBestPractices < Generator
     def emit
-      command = %Q(mf-rails_best_practices --without-color .)
+      options_string = "--without-color ."
+      command = %Q(mf-rails_best_practices #{options_string})
       mf_debug "** #{command}"
-      @output = `#{command}`
+      original_argv = ARGV.dup
+      require 'shellwords'
+      ARGV.clear; ARGV.concat Shellwords.shellwords(options_string)
+
+      require 'rubygems'
+      require 'metric_fu_requires'
+      version = MetricFu::MetricVersion.rails_best_practices
+      gem 'rails_best_practices', version
+      gem_name = 'rails_best_practices'
+      library_name = 'rails_best_practices'
+      @output = MfDebugger::Logger.capture_output { load Gem.bin_path(gem_name, library_name, version) }
+      # @output = `#{command}`
     end
 
     def analyze

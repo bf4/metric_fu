@@ -35,9 +35,18 @@ module MetricFu
     end
 
     def churn_code
-      command = "mf-churn #{build_churn_options}"
+      options_string = build_churn_options
+      command = "mf-churn #{options_string}"
       mf_debug "** #{command}"
-      `#{command}`
+      original_argv = ARGV.dup
+      require 'shellwords'
+      ARGV.clear; ARGV.concat Shellwords.shellwords(options_string)
+require 'metric_fu_requires'
+
+version = MetricFu::MetricVersion.churn
+gem 'churn', version
+MfDebugger::Logger.capture_output { load Gem.bin_path('churn', 'churn', version) }
+      # `#{command}`
     end
 
     def build_churn_options

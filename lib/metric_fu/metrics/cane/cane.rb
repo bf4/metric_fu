@@ -3,9 +3,21 @@ module MetricFu
     attr_reader :violations, :total_violations
 
     def emit
-      command = %Q{mf-cane#{abc_max_param}#{style_measure_param}#{no_doc_param}#{no_readme_param}}
+      options_string = %Q(#{abc_max_param}#{style_measure_param}#{no_doc_param}#{no_readme_param})
+      command = %Q{mf-cane #{options_string}}
       mf_debug "** #{command}"
-      @output = `#{command}`
+      original_argv = ARGV.dup
+      require 'shellwords'
+      ARGV.clear; ARGV.concat Shellwords.shellwords(options_string)
+
+      require 'rubygems'
+      require 'metric_fu_requires'
+      version = MetricFu::MetricVersion.cane
+      gem 'cane', version
+      gem_name = 'cane'
+      library_name = 'cane'
+      @output = MfDebugger::Logger.capture_output { load Gem.bin_path(gem_name, library_name, version) }
+      # @output = `#{command}`
     end
 
     def analyze

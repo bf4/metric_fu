@@ -5,9 +5,21 @@ module MetricFu
       files_to_analyze = MetricFu.roodi[:dirs_to_roodi].map{|dir| Dir[File.join(dir, "**/*.rb")] }
       files = remove_excluded_files(files_to_analyze.flatten)
       config = MetricFu.roodi[:roodi_config] ? "-config=#{MetricFu.roodi[:roodi_config]}" : ""
-      command = %Q(mf-roodi #{config} #{files.join(" ")})
+      options_string = %Q(#{config} #{files.join(" ")})
+      command = %Q(mf-roodi #{options_string})
       mf_debug "** #{command}"
-      @output = `#{command}`
+      original_argv = ARGV.dup
+      require 'shellwords'
+      ARGV.clear; ARGV.concat Shellwords.shellwords(options_string)
+
+      require 'rubygems'
+      require 'metric_fu_requires'
+      version = MetricFu::MetricVersion.roodi
+      gem 'metric_fu-roodi', version
+      gem_name = 'metric_fu-roodi'
+      library_name = 'metric_fu-roodi'
+      @output = MfDebugger::Logger.capture_output { load Gem.bin_path(gem_name, library_name, version) }
+      # @output = `#{command}`
     end
 
     def analyze

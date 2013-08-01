@@ -12,7 +12,15 @@ module MetricFu
 
       command = %Q(mf-saikuro #{options_string})
       mf_debug "** #{command}"
-      `#{command}`
+      original_argv = ARGV.dup
+      require 'shellwords'
+      ARGV.clear; ARGV.concat Shellwords.shellwords(options_string)
+      # `#{command}`
+      require 'rubygems'
+      require 'metric_fu_requires'
+      version = MetricFu::MetricVersion.saikuro
+      gem 'metric_fu-Saikuro', version
+      MfDebugger::Logger.capture_output { load Gem.bin_path('metric_fu-Saikuro', 'saikuro', version) }
     end
 
     def format_directories

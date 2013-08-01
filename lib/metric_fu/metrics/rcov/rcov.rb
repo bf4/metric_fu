@@ -21,8 +21,20 @@ module MetricFu
     def emit
       if run_rcov?
         mf_debug "** Running the specs/tests in the [#{MetricFu.rcov[:environment]}] environment"
+        options_string = command.sub(/^rcov /,'')
         mf_debug "** #{command}"
-        `#{command}`
+        original_argv = ARGV.dup
+        require 'shellwords'
+        ARGV.clear; ARGV.concat Shellwords.shellwords(options_string)
+
+        require 'rubygems'
+        require 'metric_fu_requires'
+        version = MetricFu::MetricVersion.rcov
+        gem 'rcov', version
+        gem_name = 'rcov'
+        library_name = 'rcov'
+        MfDebugger::Logger.capture_output { load Gem.bin_path(gem_name, library_name, version) }
+        # `#{command}`
       end
     end
 
