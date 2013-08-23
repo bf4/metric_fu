@@ -21,17 +21,31 @@ def mf_log(msg); mf_debug(msg); end
 Dir[MetricFu.root_dir + "/spec/support/**/*.rb"].each {|f| require f}
 
 RSpec.configure do |config|
-  # :suite after/before all specs
-  # :each ever describe block
-  # :all ever it block
-
   config.order = 'random'
 
-  config.after(:suite) do
-    cleanup_test_files
+  config.mock_with :rspec
+  config.treat_symbols_as_metadata_keys_with_true_values = true
+  config.filter_run focus: true
+  config.run_all_when_everything_filtered = true
+  config.filter_run_excluding :slow unless ENV["SLOW_SPECS"]
+
+  # :suite after/before all specs
+  # :each  every describe block
+  # :all   every it block
+
+  config.before(:all) do
+    DeferredGarbageCollection.start
+  end
+  config.after(:all) do
+    DeferredGarbageCollection.reconsider
   end
 
   config.after(:each) do
     MetricFu.reset
   end
+
+  config.after(:suite) do
+    cleanup_test_files
+  end
+
 end
