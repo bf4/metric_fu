@@ -21,3 +21,7 @@ end
 require File.expand_path File.join(File.dirname(__FILE__),'lib/metric_fu')
 
 task :default => :spec
+
+# Added by devtools
+require 'devtools'
+Devtools.init_rake_tasks

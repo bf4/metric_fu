@@ -1,20 +1,22 @@
 source 'https://rubygems.org'
 
-gem 'rake'
 # alternative graphing gem
 gem "googlecharts"
+group :development, :test do
+  # includes rake, rspec, simplecov
+  gem 'devtools', git: 'https://github.com/rom-rb/devtools.git'
+end
 group :development do
 
 end
 group :test do
-  gem "rspec", '>2'
   gem 'test-construct'
-  if ENV['COVERAGE']
-    gem 'simplecov'
-    # https://github.com/kina/simplecov-rcov-text
-    gem 'simplecov-rcov-text'
-  end
+  # https://github.com/kina/simplecov-rcov-text
+  gem 'simplecov-rcov-text'
   gem "fakefs", :require => "fakefs/safe"
   gem 'json'
 end
 gemspec :path => File.expand_path('..', __FILE__)
+
+# Added by devtools
+eval_gemfile 'Gemfile.devtools'
