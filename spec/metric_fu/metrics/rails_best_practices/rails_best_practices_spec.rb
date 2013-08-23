@@ -2,6 +2,7 @@ require "spec_helper"
 
 describe MetricFu::RailsBestPracticesGenerator do
 
+  MetricFu::Metric.get_metric(:rails_best_practices).activate
   break if metric_not_activated?(:rails_best_practices)
 
   describe "emit method" do
