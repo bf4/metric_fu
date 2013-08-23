@@ -1,7 +1,7 @@
 require "spec_helper"
 require 'fakefs/safe'
 
-describe MetricFu::Formatter::YAML do
+describe MetricFu::Formatter::YAML, :slow do
 
   before do
     setup_fs

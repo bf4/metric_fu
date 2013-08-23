@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'fakefs/safe'
 require 'metric_fu/cli/client'
 
-describe MetricFu do
+describe MetricFu, :slow do
   let(:helper)  { MetricFu::Cli::Helper.new }
 
   before(:all) do

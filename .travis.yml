@@ -1,6 +1,6 @@
 language: ruby
 bundler_args: --without development
-script: bundle exec rspec
+script: SLOW_SPECS=true bundle exec rspec
 gemfile:
   - gemfiles/Gemfile.travis
 # before_install: some_command

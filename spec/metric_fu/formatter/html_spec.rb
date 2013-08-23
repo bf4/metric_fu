@@ -1,7 +1,7 @@
 require "spec_helper"
 require 'fakefs/safe'
 
-describe MetricFu::Formatter::HTML do
+describe MetricFu::Formatter::HTML, :slow do
 
   before do
     setup_fs
