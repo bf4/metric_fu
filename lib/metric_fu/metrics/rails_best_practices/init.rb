@@ -15,7 +15,7 @@ module MetricFu
 
     def enable
       if MetricFu.configuration.supports_ripper?
-        super if MetricFu.configuration.rails?
+        super
       else
         mf_debug("Rails Best Practices is only available in MRI 1.9. It requires ripper")
       end
