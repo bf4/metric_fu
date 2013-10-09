@@ -17,11 +17,14 @@ describe MetricFu::Graph do
   end
 
   describe "setting the date on the graph" do
+    # TODO make tests work with rubinius
     next if breaks_when?(MetricFu.configuration.rubinius?)
+    # TODO remove stub
     before(:each) do
       @graph.stub(:mf_log)
     end
 
+    # TODO better test
     it "should set the date once for one data point" do
       Dir.should_receive(:[]).and_return(["metric_fu/tmp/_data/20101105.yml"])
       File.should_receive(:join)
@@ -34,6 +37,7 @@ describe MetricFu::Graph do
       @graph.generate
     end
 
+    # TODO better test
     it "should set the date when the data directory isn't in the default place" do
       Dir.should_receive(:[]).and_return(["/some/kind/of/weird/directory/somebody/configured/_data/20101105.yml"])
       File.should_receive(:join)

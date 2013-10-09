@@ -1,3 +1,4 @@
+require 'fileutils'
 module MetricFu
   module Utility
     module_function

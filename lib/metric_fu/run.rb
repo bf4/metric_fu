@@ -3,7 +3,6 @@ module MetricFu
   class Run
     def initialize
       STDOUT.sync = true
-      load_user_configuration
     end
     def run(options={})
       configure_run(options)
@@ -27,10 +26,6 @@ module MetricFu
       reporter.display_results
     end
     private
-    def load_user_configuration
-      file = File.join(Dir.pwd, '.metrics')
-      load file if File.exist?(file)
-    end
     # Updates configuration based on runtime options.
     def configure_run(options)
       disable_metrics(options)
@@ -76,7 +71,7 @@ module MetricFu
       end
     end
     def reporter
-      Reporter.new(MetricFu.configuration.formatters)
+      MetricFu::Reporter.new(MetricFu.configuration.formatters)
     end
   end
 end
