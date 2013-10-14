@@ -1,3 +1,4 @@
+# Class opened and modified by requiring a graph engine
 module MetricFu
   class Grapher
     attr_accessor :output_directory

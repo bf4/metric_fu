@@ -1,5 +1,5 @@
 require "spec_helper"
-require "metric_fu/metrics/hotspots/analysis/record"
+MetricFu.metrics_require { 'rcov/rcov_hotspot' }
 
 describe MetricFu::RcovHotspot do
   describe "map" do

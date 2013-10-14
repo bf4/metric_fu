@@ -1,3 +1,4 @@
+require 'multi_json'
 module MetricFu
   class Grapher
     BLUFF_GRAPH_SIZE = "1000x600"

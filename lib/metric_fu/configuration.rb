@@ -1,23 +1,6 @@
-MetricFu.logging_require { 'mf_debugger' }
+MetricFu.logging_require       { 'mf_debugger' }
+MetricFu.reporting_require     { 'graphs/engines/init' }
 module MetricFu
-
-  # Even though the below class methods are defined on the MetricFu module
-  # They are included here as they deal with configuration
-
-  # The @configuration class variable holds a global type configuration
-  # object for any parts of the system to use.
-  # TODO Configuration should probably be a singleton class
-  def self.configuration
-    @configuration ||= Configuration.new
-  end
-
-  def self.configure
-    Dir.glob(File.join(MetricFu.metrics_dir, '**/init.rb')).each{|init_file|require(init_file)}
-    Dir.glob(File.join(MetricFu.reporting_dir, '**/init.rb')).each{|init_file|require(init_file)}
-    configuration.tap do |config|
-      config.configure_metrics
-    end
-  end
 
   # = Configuration
   #
