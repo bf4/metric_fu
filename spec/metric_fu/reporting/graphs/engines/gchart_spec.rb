@@ -1,6 +1,16 @@
 require "spec_helper"
 require 'googlecharts'
 MetricFu.reporting_require { 'graphs/engines/gchart' }
+MetricFu.metrics_require do
+  [
+    'rcov/rcov_gchart_grapher',
+    'stats/stats_gchart_grapher',
+    'flog/flog_gchart_grapher',
+    'flay/flay_gchart_grapher',
+    'rails_best_practices/rails_best_practices_gchart_grapher',
+    'roodi/roodi_gchart_grapher'
+  ]
+end
 
 describe MetricFu::Grapher do
   describe "require_graphing_gem" do
