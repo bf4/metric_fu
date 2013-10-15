@@ -1,4 +1,7 @@
 require "spec_helper"
+MetricFu.metrics_require { 'hotspots/init' }
+MetricFu.metrics_require { 'hotspots/hotspot' }
+MetricFu.metrics_require { 'hotspots/analysis/record' }
 MetricFu.metrics_require { 'rcov/rcov_hotspot' }
 
 describe MetricFu::RcovHotspot do

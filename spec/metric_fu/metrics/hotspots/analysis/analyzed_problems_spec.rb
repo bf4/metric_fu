@@ -2,6 +2,9 @@ require 'spec_helper'
 MetricFu.metrics_require { 'hotspots/analysis/analyzed_problems' }
 
 describe MetricFu::HotspotAnalyzedProblems do
+  before do
+    enable_hotspots
+  end
 
   def analyzed_problems(result_hash)
     @analyzed_problems ||= {}
