@@ -4,6 +4,12 @@ MetricFu.lib_require { 'run' }
 # see https://github.com/grosser/pru/blob/master/bin/pru
 module MetricFu
   module Cli
+    def self.immediate_shutdown!
+      exit(1)
+    end
+    def self.complete!
+      exit(0)
+    end
     class Helper
       def initialize
         @metric_fu = MetricFu::Run.new
@@ -17,7 +23,7 @@ module MetricFu
       end
       def shutdown
         out "\nShuting down. Bye"
-        exit(1)
+        MetricFu::Cli.immediate_shutdown!
       end
       def banner
         "MetricFu: A Fistful of code metrics"
@@ -58,7 +64,7 @@ module MetricFu
       end
       def complete
         out "all done"
-        exit(0)
+        MetricFu::Cli.complete!
       end
     end
   end
