@@ -7,6 +7,7 @@ MetricFu.metrics_require do
     'stats/stats_gchart_grapher',
     'flog/flog_gchart_grapher',
     'flay/flay_gchart_grapher',
+    'reek/reek_gchart_grapher',
     'rails_best_practices/rails_best_practices_gchart_grapher',
     'roodi/roodi_gchart_grapher'
   ]

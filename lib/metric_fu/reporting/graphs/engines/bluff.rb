@@ -1,6 +1,9 @@
 require 'multi_json'
 module MetricFu
-  class Grapher
+  module BluffGrapher
+    def self.gem_name
+      'bluff'
+    end
     BLUFF_GRAPH_SIZE = "1000x600"
     BLUFF_DEFAULT_OPTIONS = <<-EOS
       var g = new Bluff.Line('graph', "#{BLUFF_GRAPH_SIZE}");
