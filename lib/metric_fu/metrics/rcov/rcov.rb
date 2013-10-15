@@ -1,4 +1,5 @@
 MetricFu.lib_require { 'utility' }
+require 'rake'
 
 module MetricFu
 

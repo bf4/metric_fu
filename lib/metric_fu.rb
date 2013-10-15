@@ -45,21 +45,4 @@ module MetricFu
     @result = nil
   end
 
-  def self.configure
-    configuration.tap do |config|
-      config.configure_metrics
-    end
-  end
-  #
-  # Even though the below class methods are defined on the MetricFu module
-  # They are included here as they deal with configuration
-
-  # The @configuration class variable holds a global type configuration
-  # object for any parts of the system to use.
-  # TODO Configuration should probably be a singleton class
-  def self.configuration
-    @configuration ||= Configuration.new
-  end
-
-
 end
