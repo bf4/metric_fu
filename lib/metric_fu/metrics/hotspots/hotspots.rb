@@ -9,7 +9,7 @@ module MetricFu
 
     def initialize(options={})
       MetricFu::Metric.enabled_metrics.each do |metric|
-        load_hotspot(metric.name)
+        require_hotspot(metric.name)
       end
       super
     end
@@ -33,8 +33,8 @@ module MetricFu
 
     private
 
-    def load_hotspot(metric_name)
-      load "metric_fu/metrics/#{metric_name}/#{metric_name}_hotspot.rb"
+    def require_hotspot(metric_name)
+      require "metric_fu/metrics/#{metric_name}/#{metric_name}_hotspot"
     rescue LoadError
       mf_debug "*** No hotspot for #{metric_name}"
     end
