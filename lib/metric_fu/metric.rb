@@ -104,7 +104,6 @@ module MetricFu
       if has_graph?
           paths << grapher_path   = "#{name}/#{name}_grapher"
           paths << grapher_path   = "#{name}/#{name}_bluff_grapher"
-          paths << grapher_path   = "#{name}/#{name}_gchart_grapher"
       end
       paths
     end

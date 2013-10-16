@@ -1,16 +1,24 @@
 # Class opened and modified by requiring a graph engine
+require 'multi_json'
 module MetricFu
   class Grapher
-
-    @grapher_module = Module.new
-    class << self
-      attr_reader :grapher_module
+    def self.gem_name
+      'bluff'
     end
+    BLUFF_GRAPH_SIZE = "1000x600"
+    BLUFF_DEFAULT_OPTIONS = <<-EOS
+      var g = new Bluff.Line('graph', "#{BLUFF_GRAPH_SIZE}");
+      g.theme_37signals();
+      g.tooltips = true;
+      g.title_font_size = "24px"
+      g.legend_font_size = "12px"
+      g.marker_font_size = "10px"
+    EOS
 
     attr_accessor :output_directory
 
     def initialize(opts = {})
-      add_grapher_engine
+      self.class.require_graphing_gem
       self.output_directory = opts[:output_directory]
     end
 
@@ -18,25 +26,10 @@ module MetricFu
       @output_directory || MetricFu::Io::FileSystem.directory('output_directory')
     end
 
-    def add_grapher_engine
-      self.class.require_graphing_gem
-      mf_log "Extending #{self.class.inspect} with #{self.class.grapher_module.inspect}"
-    end
-
-    def self.graph_engine
-      MetricFu.configuration.graph_engine
-    end
-
     def self.require_graphing_gem
-      grapher_name = graph_engine.to_s.capitalize + "Grapher"
-      @grapher_module = MetricFu.const_get(grapher_name)
-      require grapher_module.gem_name
-      mf_log "Including #{grapher_module} for #{grapher_module.gem_name} in #{self}"
-      include grapher_module
-    rescue LoadError
-      mf_log "#"*99 + "\n" +
-           "If you want to use google charts for graphing, you'll need to install the googlecharts rubygem." +
-           "\n" + "#"*99
+      require self.gem_name
+    rescue LoadError => e
+      mf_log "Failed requiring graphing gem #{e.message} #{e.backtrace.join("\t\n")}"
     end
 
     def get_metrics(metrics, sortable_prefix)
@@ -44,7 +37,18 @@ module MetricFu
     end
 
     def graph!
-      not_implemented
+      title = send(:title)
+      data = send(:data)
+      labels = MultiJson.dump(@labels)
+      output_filename = send(:output_filename)
+      content = <<-EOS
+        #{BLUFF_DEFAULT_OPTIONS}
+        g.title = '#{title}';
+        #{build_data(data)}
+        g.labels = #{labels};
+        g.draw();
+      EOS
+      File.open(File.join(self.output_directory, output_filename), 'w') {|f| f << content }
     end
 
     def title
@@ -60,6 +64,12 @@ module MetricFu
     end
 
     private
+
+    def build_data(data)
+      Array(data).map do |label, datum|
+        "g.data('#{label}', [#{datum}]);"
+      end.join("\n")
+    end
 
     def not_implemented
       raise "#{__LINE__} in #{__FILE__} from #{caller[0]}"
