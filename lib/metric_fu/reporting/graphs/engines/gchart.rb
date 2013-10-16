@@ -31,6 +31,7 @@ module MetricFu
         :filename         => File.join(self.output_directory, output_filename),
       }.merge(y_axis_scale_options)
     end
+
     def y_axis_scale_options
       determine_y_axis_scale(y_axis_scale_argument)
       {
@@ -39,6 +40,7 @@ module MetricFu
         :axis_labels      => [@labels.values, @yaxis],
       }
     end
+
     def determine_y_axis_scale(values)
       values = Array(values)
       values.collect! {|val| val || 0.0 }
@@ -53,9 +55,11 @@ module MetricFu
         @max_value = @yaxis.last
       end
     end
+
     def y_axis_scale_argument
-      mf_log "#{__LINE__} in #{__FILE__} from #{caller.join('\n')}"
+      raise "#{__LINE__} in #{__FILE__} from #{caller.join('\n')}"
     end
+
   end
 
 end
