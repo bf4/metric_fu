@@ -1,5 +1,6 @@
 require 'rake'
 require 'metric_fu/run'
+MetricFu.lib_require { 'options_hash' }
 namespace :metrics do
   def options_tip(task_name)
     "with options, for example:  rake metrics:#{task_name}['cane: {abc_max: 81}']"
@@ -27,26 +28,12 @@ namespace :metrics do
 
   private
 
-  # from https://github.com/rails/rails/blob/master/activesupport/lib/active_support/core_ext/hash/keys.rb
-  class Hash
-    # Destructively, recursively convert all keys to symbols, as long as they respond
-    # to +to_sym+.
-    def recursively_symbolize_keys!
-      keys.each do |key|
-        value = delete(key)
-        new_key = key.intern #rescue
-        self[new_key] = (value.is_a?(Hash) ? value.dup.recursively_symbolize_keys! : value)
-      end
-      self
-    end
-  end
-
   def process_options(options)
     return {} if options.nil? or options.empty?
     options = YAML.load(options)
     if options.is_a?(Hash)
       p "Got options #{options.recursively_symbolize_keys!.inspect}"
-      options
+      OptionsHash.new(options)
     else
       raise "Invalid options #{options.inspect}, is a #{options.class}, should be a Hash"
     end

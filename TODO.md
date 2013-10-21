@@ -19,6 +19,19 @@ Also see [CONTRIBUTING](./CONTRIBUTING.md)
 * Make the template pages prettier (hold off until [61](https://github.com/metricfu/metric_fu/pull/61) is merged)
 * Be able to generate historical metrics for eg gem releases (tagged with appropriate date)
 
+::OptionsHash
+::FileMetricResult
+::GemRun
+-> metric_fu cane ARGV instead of mf-cane
+AweseomTemplate ->
+Grapher (Bluff) ->
+MetricFu.setup
+/metric
+/grapher
+/generator
+/hotspot
+
+
 ## Testing
 
 * Test against a rails app, see [yui-rails](https://github.com/nextmat/yui-rails/tree/master/test/dummy)

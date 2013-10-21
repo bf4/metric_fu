@@ -1,4 +1,6 @@
 require 'fileutils'
+require 'yaml'
+MetricFu.lib_require { 'metric_file' }
 module MetricFu
   module Utility
     module_function
@@ -22,6 +24,17 @@ module MetricFu
 
     def mkdir_p(*args)
       FileUtils.mkdir_p(*args)
+    end
+
+    def load_yaml_file(filename)
+      return unless File.exists?(filename)
+      contents = File.read(filename)
+      YAML.load(contents)
+    end
+
+    def metric_files
+      file_pattern = File.join(MetricFu::Io::FileSystem.directory('data_directory'), '*.yml')
+      MetricFu::MetricFile.from_file_pattern(file_pattern)
     end
 
   end

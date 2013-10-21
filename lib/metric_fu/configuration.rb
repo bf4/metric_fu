@@ -123,11 +123,10 @@ module MetricFu
       @formatters << MetricFu::Formatter.class_for(format).new(output: output)
     end
 
-    # @return [Array<Symbol>] names of enabled metrics with graphs
-    def graphed_metrics
-      # TODO: This is a common enough need to be pushed into MetricFu::Metric as :enabled_metrics_with_graphs
-      MetricFu::Metric.enabled_metrics.select{|metric|metric.has_graph?}.map(&:name)
-    end
+    # # @return [Array<Symbol>] names of enabled metrics with graphs
+    # def graphed_metrics
+    #   MetricFu::Metric.enabled_graphed_metrics
+    # end
 
     def graph_engine
       :bluff

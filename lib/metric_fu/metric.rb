@@ -59,6 +59,10 @@ module MetricFu
       metrics.select{|metric| metric.enabled && metric.activated}.sort_by {|metric| metric.name  == :hotspots ? 1 : 0 }
     end
 
+    def self.enabled_graphed_metrics
+      metrics.select{|metric| metric.enabled && metric.activated && metric.has_graph?}.sort_by {|metric| metric.name  == :hotspots ? 1 : 0 }
+    end
+
     def self.get_metric(name)
       metrics.find{|metric|metric.name.to_s == name.to_s}
     end
