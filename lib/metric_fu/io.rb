@@ -44,7 +44,7 @@ module MetricFu
         create_directories @directories.values
 
         @directories['root_directory']    = MetricFu.root_dir
-        # TODO Though this is true of the general AwesomeTemplate, it is not necessarily true of templates within each Metric.  Each metric should probably know how to use AwesomeTemplate (or whatever)
+        # TODO Though this is true of the general MetricsTemplate, it is not necessarily true of templates within each Metric.  Each metric should probably know how to use MetricsTemplate (or whatever)
         @directories['template_directory'] = File.join(@directories.fetch('root_directory'), 'lib', 'templates')
         @file_globs_to_ignore = []
         set_code_dirs

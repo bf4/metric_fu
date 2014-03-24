@@ -132,8 +132,8 @@ describe MetricFu::Configuration do
         expect(output_directory).to eq(output_dir)
       end
 
-      it 'should set @template_class to AwesomeTemplate by default' do
-        expect(template_class).to eq(AwesomeTemplate)
+      it 'should set @template_class to MetricsTemplate by default' do
+        expect(template_class).to eq(MetricsTemplate)
       end
 
       describe 'when a templates configuration is given' do

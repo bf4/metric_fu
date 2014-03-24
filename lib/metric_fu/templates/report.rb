@@ -1,4 +1,5 @@
 MetricFu.lib_require { 'formatter/syntax' }
+MetricFu.reporting_require { 'templates/template' }
 
 module MetricFu
   module Templates
