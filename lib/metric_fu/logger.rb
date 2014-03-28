@@ -1,51 +1,59 @@
-module MfDebugger
-  extend self
+require 'logger'
+require 'forwardable'
+module MetricFu
 
   class Logger
-    class << self
-      attr_accessor :debug_on
-      @debug_on = false
+    extend Forwardable
+
+    def initialize(stdout, stderr)
+      @logger = ::Logger.new(stdout, stderr)
+      self.debug_on = false
+      self.formatter = ->(severity, time, progname, msg){ "#{msg}\n" }
+      self.level = 'info'
     end
-    def self.log(msg, &block)
-      if block_given?
-        block.call
-      end
-      STDOUT.puts '*'*5 + msg.to_s
+
+    def debug_on=(bool)
+      self.level = bool ? 'debug' : 'info'
     end
-    def self.debug(msg, &block)
-      if MfDebugger::Logger.debug_on
-        if block_given?
-          log(msg,&block)
-        else
-          log(msg)
-        end
-      end
+
+    def debug_on
+      @logger.level == Logger::DEBUG
     end
-    # From episode 029 of Ruby Tapas by Avdi
-    # https://rubytapas.dpdcart.com/subscriber/post?id=88
-    def self.capture_output(stream=STDOUT, &block)
-      old_stdout = stream.clone
-      pipe_r, pipe_w = IO.pipe
-      pipe_r.sync    = true
-      output         = ""
-      reader = Thread.new do
-        begin
-          loop do
-            output << pipe_r.readpartial(1024)
-          end
-        rescue EOFError
-        end
-      end
-      stream.reopen(pipe_w)
-      yield
-    ensure
-      stream.reopen(old_stdout)
-      pipe_w.close
-      reader.join
-      pipe_r.close
-      return output
+
+    def_delegators :@logger, :info, :warn, :error, :fatal, :unknown
+
+    LEVELS = {
+      'debug' => ::Logger::DEBUG,
+      'info'  => ::Logger::INFO,
+      'warn'  => ::Logger::WARN,
+      'error' => ::Logger::ERROR,
+      'fatal' => ::Logger::FATAL,
+      'unknown' => ::Logger::UNKNOWN,
+    }
+
+    def level=(level)
+      @logger.level = LEVELS.fetch(level.to_s.downcase) { level }
     end
+
+    def formatter=(formatter)
+      @logger.formatter = formatter
+    end
+
+    def log(msg)
+      @logger.info '*'*5 + msg.to_s
+    end
+
+    def debug(msg)
+      @logger.debug '*'*5 + msg.to_s
+    end
+
   end
+
+end
+# For backward compatibility
+module MfDebugger
+  extend self
+  Logger = ::MetricFu::Logger.new($stdout, $stderr)
 
   def mf_debug(msg,&block)
     MfDebugger::Logger.debug(msg, &block)
