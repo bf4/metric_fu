@@ -78,40 +78,21 @@ module MetricFu
   end
   extend SingleForwardable
 
-  def_delegators :loader, :lib_require, :load_tasks
-
-  def library_dirs
-    %w(metrics formatter reporting logging errors data_structures tasks)
-  end
-
-  loader.create_dirs(self) do
-    library_dirs
-  end
-
-  # @note artifact_dir is relative to where the task is being run,
-  #   not to the metric_fu library
-  require 'metric_fu/io'
-  def artifact_dir
-    MetricFu::Io::FileSystem.artifact_dir
-  end
-
-  def artifact_subdirs
-    %w(scratch output _data)
-  end
-
-  loader.create_artifact_subdirs(self) do
-    artifact_subdirs
-  end
+  def_delegators :loader, :load_tasks
 
   loader.setup
 
+  # register config instance
+  # so we can reset them
+  # then again, why do @graph and @result need to have an instance?
   def reset
     # TODO Don't like how this method needs to know
     # all of these class variables that are defined
     # in separate classes.
-    @configuration = nil
-    @graph = nil
-    @result = nil
+    # @configuration = nil
+    # @graph = nil
+    # @result = nil
+    configuration.reset
   end
 
   def run(options)
